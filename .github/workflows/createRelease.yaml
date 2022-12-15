@@ -84,16 +84,16 @@ jobs:
             } catch (error) {
               core.setFailed(error.message);
             }
-    steps:
-  - uses: oprypin/find-latest-tag@v1
-    with:
-      repository: octokit/rest.js  # The repository to scan.
-      releases-only: false  # We know that all relevant tags have a GitHub release for them.
-    id: octokit  # The step ID to refer to later.
+    - name: "latest tag"
+    - uses: oprypin/find-latest-tag@v1
+        with:
+          repository: octokit/rest.js  # The repository to scan.
+          releases-only: false  # We know that all relevant tags have a GitHub release for them.
+        id: octokit  # The step ID to refer to later.
 
-  - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
+    - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
 
-  - uses: actions/checkout@v3
-    with:
-      repository: octokit/rest.js  # Download that repository.
-      ref: ${{ steps.octokit.outputs.tag }}
+    - uses: actions/checkout@v3
+        with:
+        repository: octokit/rest.js  # Download that repository.
+        ref: ${{ steps.octokit.outputs.tag }}
