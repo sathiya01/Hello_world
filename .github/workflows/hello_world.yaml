@@ -23,6 +23,7 @@
 #        run: echo "goodbye"
 #        shell: bash
 
+#new workflow
 name: Release workflow
 on:
  push:
