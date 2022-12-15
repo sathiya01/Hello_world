@@ -1,21 +1,47 @@
-name: Release workflow
-on:
- push:
-  branches:
-    - main
-  workflow_dispatch:
+#name: Release workflow
+#on:
+# push:
+#  branches:
+#    - main
+#  workflow_dispatch:
+#
+#jobs:
+#  release tag:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Create Github release
+#      - uses: actions/create-release@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          tag_name: ${{ github.run_number }}
+#          release_name: Release ${{ github.run_number }}
+#
 
-jobs:
-  release tag:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Github release
-      - uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.run_number }}
-          release_name: Release ${{ github.run_number }}
 
+#name: Hello world workflow
+#on:
+#  push:
+#    branches:
+#        - main
+#  pull_request:
+#    branches:
+#        - main
+#  workflow_dispatch:
+#
+#jobs:
+#  hello:
+#      runs-on: ubuntu-latest
+#      steps:
+#        - uses: actions/checkout@v2
+#        - name: hello world
+#          run: echo "hello"
+#          shell: bash
+#  goodbye:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: goodbye world
+#        run: echo "goodbye"
+#        shell: bash
 
-
+#new workflow
