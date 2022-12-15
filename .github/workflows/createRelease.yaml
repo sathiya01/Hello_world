@@ -84,21 +84,49 @@
 #              core.setFailed(error.message);
 #            }
 #
-name: Push a new tag with Pull Request
+#name: Push a new tag with Pull Request
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#
+#jobs:
+#  release:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions-ecosystem/action-get-latest-tag@v1
+#        id: get-latest-tag
+#
+#      - uses: actions-ecosystem/action-bump-semver@v1
+#        id: bump-semver
+#        with:
+#          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+#
+#
 
+name: Tagged
 on:
   push:
     branches:
       - main
 
 jobs:
-  release:
+
+  my_job:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - uses: actions-ecosystem/action-get-latest-tag@v1
-        id: get-latest-tag
+    - name: Find Tag
+      id: tagger
+      uses: jimschubert/query-tag-action@v1
+      with:
+        include: 'v*'
 
-      - name: "Print available tag"
-        run: echo '${{(steps.get-latest-tag.output) }}' | jq
+    - name: Show Tag
+      id: display
+      run: |
+        echo 'Output from Find Tag: ${{steps.tagger.outputs.tag}}'
