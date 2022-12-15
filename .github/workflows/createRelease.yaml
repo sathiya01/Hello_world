@@ -32,7 +32,7 @@ name: Release workflow
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   release-on-push:
