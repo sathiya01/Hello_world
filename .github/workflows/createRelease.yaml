@@ -65,6 +65,8 @@ jobs:
     steps:
       - name: "Determine tag"
         run: "echo \"RELEASE_TAG=${GITHUB_REF#refs/tags/}\" >> $GITHUB_ENV"
+      - name: "Print github event"
+        run: echo '${{ toJSON(process) }}' | jq
 
       - name: "Create release"
         uses: "actions/github-script@v5"
@@ -73,7 +75,7 @@ jobs:
           script: |
             try {
               await github.rest.repos.createRelease({
-                draft: false,
+                draft: true,
                 generate_release_notes: true,
                 name: process.env.RELEASE_TAG,
                 owner: context.repo.owner,
