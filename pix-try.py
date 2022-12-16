@@ -26,14 +26,14 @@ def fetchLatestTag():
   latest_tag = response.json()
 
 
-def gitPublishRelease(version, releaseNotes,releaseTitle):
+def gitPublishRelease(version, releaseNotes,releaseTitle, targetBranch):
 #    gh release create v2.2.1 --notes "bugfix release"
 #FIXME: pass draft
-    cmd = "gh release create %s --notes '%s' --title '%s'"%(version,releaseNotes, releaseTitle)
+    cmd = "gh release create %s --notes '%s' --title '%s' --target '%s'"%(version,releaseNotes, releaseTitle, targetBranch)
     print(cmd)
 
     os.system(cmd)
 
 if __name__ == "__main__":
   fetchLatestTag()
-  gitPublishRelease('v2.0.2','release note new check','release title')
+  gitPublishRelease('v2.0.3','release note new check','release title', 'script')
